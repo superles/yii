@@ -12,7 +12,10 @@
 /*# AVOID COLLISIONS #*/
 	
 	// IE6 Background Image Fix
-	if ((!$.support.opacity && !$.support.style)) try { document.execCommand("BackgroundImageCache", false, true)} catch(e) { };
+	if ((!$.support.opacity && !$.support.style)) try {
+		document.execCommand("BackgroundImageCache", false, true)
+	} catch (e) {
+	}
 	// Thanks to http://www.visualjquery.com/rating/rating_redux.html
 	
 	// plugin initialization
@@ -27,13 +30,12 @@
 				return this.each(function(){
 					$.fn.rating.apply($(this), args);
     });
-			};
+			}
 			// Invoke API method handler
 			$.fn.rating[arguments[0]].apply(this, $.makeArray(arguments).slice(1) || []);
 			// Quick exit...
 			return this;
-		};
-		
+		}
 		// Initialize options for this call
 		var options = $.extend(
 			{}/* new object */,
@@ -113,9 +115,8 @@
 					})
 					.data('rating', control)
 				);
-				
-			}; // first element of group
-			
+
+} // first element of group
 			// insert rating star (thanks Jan Fanslau rev125 for blind support https://code.google.com/p/jquery-star-rating-plugin/issues/detail?id=125)
 			var star = $('<div role="text" aria-label="'+ this.title +'" class="star-rating rater-'+ control.serial +'"><a title="' + (this.title || this.value) + '">' + this.value + '</a></div>');
 			rater.append(star);
@@ -137,8 +138,7 @@
 				// move the star left by using a negative margin
 				// this is work-around to IE's stupid box model (position:relative doesn't work)
 				.find('a').css({ 'margin-left':'-'+ (spi*spw) +'px' })
-			};
-			
+			}
 			// readOnly?
 			if(control.readOnly)//{ //save a byte!
 				// Mark star as readOnly so user can customize display
@@ -169,8 +169,7 @@
 			if(this.nodeName=="A"){
     if($(this).hasClass('selected'))
      control.current = star;
-   };
-			
+			}
 			// hide input element
 			input.hide();
 			
@@ -285,13 +284,13 @@
 					});
 					// don't break the chain
   			return this;
-				};
+				}
 			}
 			else{
 				control.current = this[0].tagName=='INPUT' ?
 				 this.data('rating.star') :
 					(this.is('.rater-'+ control.serial) ? this : null);
-			};
+			}
 			// Update rating control state
 			this.data('rating', control);
 			// Update display

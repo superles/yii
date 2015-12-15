@@ -23,14 +23,13 @@
 				return this.each(function(){
 					$.fn.MultiFile.apply($(this), args);
     });
-			};
-			// Invoke API method handler
+            }
+            // Invoke API method handler
 			$.fn.MultiFile[arguments[0]].apply(this, $.makeArray(arguments).slice(1) || []);
 			// Quick exit...
 			return this;
-		};
-		
-		// Initialize options for this call
+        }
+        // Initialize options for this call
 		var options = $.extend(
 			{}/* new object */,
 			$.fn.MultiFile.options/* default options */,
@@ -50,9 +49,8 @@
 		if($.fn.MultiFile.options.autoIntercept){
 			$.fn.MultiFile.intercept( $.fn.MultiFile.options.autoIntercept /* array of methods to intercept */ );
 			$.fn.MultiFile.options.autoIntercept = null; /* only run this once */
-		};
-		
-		// loop through each matched element
+        }
+        // loop through each matched element
 		this
 		 .not('.MultiFile-applied')
 			.addClass('MultiFile-applied')
@@ -85,21 +83,20 @@
        // limit number of files that can be selected?
        if(!(o.max>0) /*IsNull(MultiFile.max)*/){
         o.max = MultiFile.E.attr('maxlength');
-       };
-							if(!(o.max>0) /*IsNull(MultiFile.max)*/){
+       }
+            if (!(o.max > 0) /*IsNull(MultiFile.max)*/) {
 								o.max = (String(MultiFile.e.className.match(/\b(max|limit)\-([0-9]+)\b/gi) || ['']).match(/[0-9]+/gi) || [''])[0];
 								if(!(o.max>0)) o.max = -1;
 								else           o.max = String(o.max).match(/[0-9]+/gi)[0];
 							}
-       o.max = new Number(o.max);
+            o.max = Number(o.max);
        // limit extensions?
        o.accept = o.accept || MultiFile.E.attr('accept') || '';
        if(!o.accept){
         o.accept = (MultiFile.e.className.match(/\b(accept\-[\w\|]+)\b/gi)) || '';
-        o.accept = new String(o.accept).replace(/^(accept|ext)\-/i,'');
-       };
-       
-       //===
+           o.accept = String(o.accept).replace(/^(accept|ext)\-/i, '');
+       }
+            //===
        
        // APPLY CONFIGURATION
 							$.extend(MultiFile, o || {});
@@ -131,9 +128,8 @@
        if(String(MultiFile.accept).length>1){
 								MultiFile.accept = MultiFile.accept.replace(/\W+/g,'|').replace(/^\W|\W$/g,'');
         MultiFile.rxAccept = new RegExp('\\.('+(MultiFile.accept?MultiFile.accept:'')+')$','gi');
-       };
-       
-       //===
+       }
+            //===
        
        // Create wrapper to hold our file list
        MultiFile.wrapID = MultiFile.instanceKey+'_wrap'; // Wrapper ID?
@@ -153,8 +149,8 @@
 								// this change allows us to keep the files in the order they were selected
 								MultiFile.wrapper.append( '<div class="MultiFile-list" id="'+MultiFile.wrapID+'_list"></div>' );
 								MultiFile.list = $('#'+MultiFile.wrapID+'_list');
-							};
-       MultiFile.list = $(MultiFile.list);
+                            }
+            MultiFile.list = $(MultiFile.list);
 							
        //===
        
@@ -244,16 +240,15 @@
             // Handle error
             MultiFile.error(ERROR);
 												
-            // 2007-06-24: BUG FIX - Thanks to Adrian Wróbel <adrian [dot] wrobel [at] gmail.com>
+            // 2007-06-24: BUG FIX - Thanks to Adrian Wrï¿½bel <adrian [dot] wrobel [at] gmail.com>
             // Ditch the trouble maker and add a fresh new element
             MultiFile.n--;
             MultiFile.addSlave(newEle[0], slave_count);
             slave.parent().prepend(newEle);
             slave.remove();
             return false;
-          };
-          
-          // Hide this element (NB: display:none is evil!)
+          }
+            // Hide this element (NB: display:none is evil!)
           $(this).css({ position:'absolute', top: '-3000px' });
           
           // Add new element to the form
@@ -437,8 +432,8 @@
 				//SEE-http://code.google.com/p/jquery-multifile-plugin/issues/detail?id=27
 				setTimeout(function(){ $.fn.MultiFile.reEnableEmpty() },1000);
     return value;
-   };
-   if(methods.constructor.toString().indexOf("Array")<0) methods = [methods];
+   }
+      if (methods.constructor.toString().indexOf("Array") < 0) methods = [methods];
    for(var i=0;i<methods.length;i++){
     method = methods[i]+''; // make sure that we have a STRING
     if(method) (function(method){ // make sure that method is ISOLATED for the interception
@@ -451,7 +446,7 @@
       return value;
      }; // interception
     })(method); // MAKE SURE THAT method IS ISOLATED for the interception
-   };// for each method
+   }// for each method
   } // $.fn.MultiFile.intercept
 		
  });

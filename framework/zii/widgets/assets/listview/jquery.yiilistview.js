@@ -183,7 +183,9 @@
 
 		if(settings.beforeAjaxUpdate != undefined)
 			settings.beforeAjaxUpdate(id, options);
-		yiiXHR[id] = $.ajax(options);
+		yiiXHR[id] = $.ajax(options).then(function(){
+			$(document).trigger('yiiListViewStop');
+		});
 	};
 
 })(jQuery);

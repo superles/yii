@@ -265,8 +265,7 @@ $.Autocompleter = function(input, options) {
 			stopLoading();
 			select.hide();
 		}
-	};
-	
+	}
 	function trimWords(value) {
 		if (!value)
 			return [""];
@@ -304,13 +303,11 @@ $.Autocompleter = function(input, options) {
 			// select the portion of the value not typed by the user (so the next character will erase)
 			$(input).selection(previousValue.length, previousValue.length + sValue.length);
 		}
-	};
-
+	}
 	function hideResults() {
 		clearTimeout(timeout);
 		timeout = setTimeout(hideResultsNow, 200);
-	};
-
+	}
 	function hideResultsNow() {
 		var wasVisible = select.visible();
 		select.hide();
@@ -334,8 +331,7 @@ $.Autocompleter = function(input, options) {
 				}
 			);
 		}
-	};
-
+	}
 	function receiveData(q, data) {
 		if ( data && data.length && hasFocus ) {
 			stopLoading();
@@ -345,8 +341,7 @@ $.Autocompleter = function(input, options) {
 		} else {
 			hideResultsNow();
 		}
-	};
-
+	}
 	function request(term, success, failure) {
 		if (!options.matchCase)
 			term = term.toLowerCase();
@@ -386,8 +381,7 @@ $.Autocompleter = function(input, options) {
 			select.emptyList();
 			failure(term);
 		}
-	};
-	
+	}
 	function parse(data) {
 		var parsed = [];
 		var rows = data.split("\n");
@@ -403,12 +397,10 @@ $.Autocompleter = function(input, options) {
 			}
 		}
 		return parsed;
-	};
-
+	}
 	function stopLoading() {
 		$input.removeClass(options.loadingClass);
-	};
-
+	}
 };
 
 $.Autocompleter.defaults = {
@@ -452,8 +444,7 @@ $.Autocompleter.Cache = function(options) {
 		}
 		if (i == -1) return false;
 		return i == 0 || options.matchContains;
-	};
-	
+	}
 	function add(q, value) {
 		if (length > options.cacheLength){
 			flush();
@@ -505,8 +496,7 @@ $.Autocompleter.Cache = function(options) {
 			if ( nullData++ < options.max ) {
 				stMatchSets[""].push(row);
 			}
-		};
-
+		}
 		// add the data items to the cache
 		$.each(stMatchSets, function(i, value) {
 			// increase the cache size
@@ -600,7 +590,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 		.css("position", "absolute")
 		.appendTo(document.body);
 	
-		list = $("<ul/>").appendTo(element).mouseover( function(event) {
+		list = $("<ul/>").addClass('list-group').appendTo(element).mouseover( function(event) {
 			if(target(event).nodeName && target(event).nodeName.toUpperCase() == 'LI') {
 	            active = $("li", list).removeClass(CLASSES.ACTIVE).index(target(event));
 			    $(target(event)).addClass(CLASSES.ACTIVE);            
@@ -648,8 +638,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
                 list.scrollTop(offset);
             }
         }
-	};
-	
+	}
 	function movePosition(step) {
 		active += step;
 		if (active < 0) {
@@ -674,7 +663,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			var formatted = options.formatItem(data[i].data, i+1, max, data[i].value, term);
 			if ( formatted === false )
 				continue;
-			var li = $("<li/>").html( options.highlight(formatted, term) ).addClass(i%2 == 0 ? "ac_even" : "ac_odd").appendTo(list)[0];
+			var li = $("<li/>").html( options.highlight(formatted, term) ).addClass(i%2 == 0 ? "list-group-item" : "list-group-item").appendTo(list)[0];
 			$.data(li, "ac_data", data[i]);
 		}
 		listItems = list.find("li");

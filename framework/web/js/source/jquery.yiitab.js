@@ -40,7 +40,7 @@
 				var id = url.substring(pos);
 				if (this.find('>ul a[href="'+id+'"]').length > 0) {
 					activate(id);
-					return;
+
 				}
 			}
 		}

@@ -352,7 +352,9 @@
 					if (settings.beforeAjaxUpdate !== undefined) {
 						settings.beforeAjaxUpdate(id, options);
 					}
-					yiiXHR[id] = $.ajax(options);
+					yiiXHR[id] = $.ajax(options).always(function(){
+						$(document).trigger('yiiGridViewStop');
+					});
 				} else {  // non-ajax mode
 					if (options.type === 'GET') {
 						window.location.href = options.url;
