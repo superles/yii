@@ -265,7 +265,8 @@ $.Autocompleter = function(input, options) {
 			stopLoading();
 			select.hide();
 		}
-	}
+	};
+
 	function trimWords(value) {
 		if (!value)
 			return [""];
@@ -303,11 +304,13 @@ $.Autocompleter = function(input, options) {
 			// select the portion of the value not typed by the user (so the next character will erase)
 			$(input).selection(previousValue.length, previousValue.length + sValue.length);
 		}
-	}
+	};
+
 	function hideResults() {
 		clearTimeout(timeout);
 		timeout = setTimeout(hideResultsNow, 200);
-	}
+	};
+
 	function hideResultsNow() {
 		var wasVisible = select.visible();
 		select.hide();
@@ -331,7 +334,8 @@ $.Autocompleter = function(input, options) {
 				}
 			);
 		}
-	}
+	};
+
 	function receiveData(q, data) {
 		if ( data && data.length && hasFocus ) {
 			stopLoading();
@@ -341,7 +345,8 @@ $.Autocompleter = function(input, options) {
 		} else {
 			hideResultsNow();
 		}
-	}
+	};
+
 	function request(term, success, failure) {
 		if (!options.matchCase)
 			term = term.toLowerCase();
@@ -381,7 +386,8 @@ $.Autocompleter = function(input, options) {
 			select.emptyList();
 			failure(term);
 		}
-	}
+	};
+
 	function parse(data) {
 		var parsed = [];
 		var rows = data.split("\n");
@@ -397,10 +403,12 @@ $.Autocompleter = function(input, options) {
 			}
 		}
 		return parsed;
-	}
+	};
+
 	function stopLoading() {
 		$input.removeClass(options.loadingClass);
-	}
+	};
+
 };
 
 $.Autocompleter.defaults = {
@@ -444,7 +452,8 @@ $.Autocompleter.Cache = function(options) {
 		}
 		if (i == -1) return false;
 		return i == 0 || options.matchContains;
-	}
+	};
+
 	function add(q, value) {
 		if (length > options.cacheLength){
 			flush();
@@ -496,7 +505,8 @@ $.Autocompleter.Cache = function(options) {
 			if ( nullData++ < options.max ) {
 				stMatchSets[""].push(row);
 			}
-		}
+		};
+
 		// add the data items to the cache
 		$.each(stMatchSets, function(i, value) {
 			// increase the cache size
@@ -638,7 +648,8 @@ $.Autocompleter.Select = function (options, input, select, config) {
                 list.scrollTop(offset);
             }
         }
-	}
+	};
+
 	function movePosition(step) {
 		active += step;
 		if (active < 0) {
